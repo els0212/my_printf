@@ -1,17 +1,18 @@
-SRC=ft_printf.c
-OBJ=$(SRCS:.c=.o)
+SRC=ft_printf.c ft_printf_format_utils.c ft_printf_str_utils.c ft_printf_conv.c ft_printf_mem_utils.c
+OBJ=$(SRC:.c=.o)
 NAME=libftprintf.a
-INC=.
 CC=gcc
+AR=ar
+ARFLAGS=rcs
 CFLAGS=-Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ)
-
 .c.o : $(SRC)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME) : $(OBJ)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 clean :
 	rm -rf $(OBJ)
@@ -20,3 +21,5 @@ fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
+
+.PHONY : all clean fclean re
