@@ -1,33 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_str_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/24 00:28:14 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/25 23:07:09 by hyi              ###   ########.fr       */
+/*   Created: 2020/12/27 23:36:09 by hyi               #+#    #+#             */
+/*   Updated: 2020/12/27 23:36:09 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		ft_memset(char **line, size_t size)
-{
-	if (!(*line = (char *)malloc(sizeof(char) * (size + 1))))
-		return (-1);
-	ft_init(*line, size);
-	return (0);
-}
-
-void	ft_init(char *line, size_t size)
-{
-	size_t	st;
-
-	st = 0;
-	while (st < size)
-		*(line + st++) = 0;
-}
 
 size_t	ft_strlen(char *s)
 {
@@ -71,42 +54,27 @@ void	ft_resize_and_copy(char **line, char *buf, int st, int ed)
 	*line = temp;
 }
 
-unsigned long	ft_make_long(const char *ptr, int st, int ed)
-{
-	unsigned long	ret;
-	unsigned long	mod;
-
-	ret = 0;
-	mod = 1;
-	while (--ed >= st)
-	{
-		ret += ((unsigned long)(ptr[ed] - '0') * mod);
-		mod *= 10;
-	}
-	return (ret);
-}
-
-long			ft_atoi(const char *nptr)
+void	ft_str_rev(char *str, int size)
 {
 	int		st;
-	int		ed;
-	long	sign;
+	char	temp;
 
-	sign = 1;
 	st = 0;
-	while (nptr[st] && (nptr[st] == ' ' ||
-				(nptr[st] >= 0x09 && nptr[st] <= 0x0D)))
+	while (st < size / 2)
+	{
+		temp = str[st];
+		str[st] = str[size - st - 1];
+		str[size - st - 1] = temp;
 		st++;
-	if (!nptr[st])
-		return (0);
-	if (nptr[st] == '-')
-		sign = -1;
-	if (sign == -1 || nptr[st] == '+')
-		st++;
-	if (nptr[st] < '0' || nptr[st] > '9')
-		return (0);
-	ed = st;
-	while (nptr[ed] >= '0' && nptr[ed] <= '9')
-		ed++;
-	return (ft_make_long(nptr, st, ed) * sign);
+	}
+}
+
+void	ft_str_init(t_str *str)
+{
+	str->content = 0;
+	str->minus = -1;
+	str->zero = -1;
+	str->width = -1;
+	str->precision = -1;
+	str->len = 0;
 }

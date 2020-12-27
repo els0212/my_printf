@@ -1,16 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
+/*   Updated: 2020/12/27 23:40:03 by hyi              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_isconv(char c, int st, int ed)
-{
-	char	*s;
+/*
+** for format string conversion
+*/
 
-	s = "cspdiuxX%0*.-";
-	st = st < 0 ? 0 : st;
-	while (s[st] && st < ed)
+int	ft_proc_conv(t_str *str, char conv, va_list ap)
+{
+	if (!ft_isconv(conv, 0, 8))
+		return (-1);
+	if (conv == 'c')
+		ft_print_char(str, ap);
+	else if (conv == 's')
+		ft_print_string(str, ap);
+	else if (conv == 'p')
+		ft_print_address(str, ap);
+	else if (conv == 'd')
+		ft_print_digit(str, ap);
+	else if (conv == 'i')
+		ft_print_digit(str, ap);
+	else if (conv == 'u')
+		ft_print_unsigned(str, ap);
+	else if (conv == 'x')
+		ft_print_hex(str, ap, 0);
+	else if (conv == 'X')
+		ft_print_hex(str, ap, 1);
+	return (0);
+}
+
+int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
+{
+	if (ori[st] == '-')
 	{
-		if (s[st] == c)
-			return (1);
+		str->minus = 1;
 		st++;
+	}
+	if (ori[st] == '0')
+	{
+		str->zero = 1;
+		st++;
+	}
+	st = ft_get_num(str, ap, ori, st);
+	if (ori[st] == '.')
+		st = ft_get_num(str, ap, ori, ++st);
+	if (ft_proc_conv(str, ori[st], ap) == -1)
+		return (-1);
+	st++;
+	return (st);
+}
+
+int	ft_printf_loop(t_str *str, va_list ap, const char *ori, int *st)
+{
+	int	sub_st;
+
+	sub_st = *st;
+	while (ori[sub_st] && ori[sub_st] != '%')
+		sub_st++;
+	ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
+	if (!ori[*st = sub_st])
+		return (1);
+	(*st)++;
+	if (ori[*st] == '%')
+	{
+		ft_resize_and_copy(&(str->content), (char *)ori, *st, *st + 1);
+		(*st)++;
+	}
+	else
+	{
+		if ((*st = ft_chk_conv(str, ap, ori, *st)) == -1)
+			return (-1);
 	}
 	return (0);
 }
@@ -18,121 +87,20 @@ int	ft_isconv(char c, int st, int ed)
 int	ft_printf(const char *ori, ...)
 {
 	va_list	ap;
-	int		ret;
 	int		st;
-	int		sub_st;
-	char	*str;
-	int		width;
-	int		precision;
+	t_str	str;
 
 	if (!ori)
 		return (-1);
 	va_start(ap, ori);
-	ret = 0;
 	st = 0;
-	str = 0;
-	width = -1;
-	precision = -1;
+	ft_str_init(&str);
 	while (ori[st])
-	{
-		sub_st = st;
-		while (ori[sub_st] && ori[sub_st] != '%')
-			sub_st++;
-		ft_resize_and_copy(&str, (char *)ori, st, sub_st);
-		//printf("1st str = %s\n", str);
-		if (!ori[st = sub_st]) 
+		if (ft_printf_loop(&str, ap, ori, &st))
 			break ;
-		st++;
-		/*
-		if (!ft_isconv(ori[st], 0, 13))
-		{
-			printf("free!\n");
-			if (str)
-				free(str);
-			return (-1);
-		}
-		*/
-		if (ori[st] == '%')
-		{
-			printf("%%%%!!\n");
-			ft_resize_and_copy(&str, (char *)ori, st, st + 1);
-			st++;
-		}
-		else
-		{
-			printf("in %%, st = %d\n", st);
-			/*
-			while (ori[sub_st] && ft_isconv(ori[sub_st], 9, 13))
-				sub_st++;
-			
-			if (!ori[sub_st] || !ft_isconv(ori[sub_st], 0, 9))
-			{
-				printf("fail!\n");
-				if (str)
-					free(str);
-				return (-1);
-			}
-			*/
-			if (ori[st] == '-')
-			{
-				sub_st++;
-				if (ori[st] == '0')
-					st++;
-				if (ori[st] == '*')
-				{
-					width = va_arg(ap, int);
-					st++;
-				}
-				else if (ori[st] >= '0' && ori[st] <= '9')
-				{
-						width = (int)ft_atoi(&ori[st]);
-						while (ori[st] >= '0' && ori[st] <= '9')
-							st++;
-				}
-			}
-			if (ori[st] >= '0' && ori[st] <= '9')
-			{
-				//printf("ori[st] = %c\n", ori[st]);
-				width = (int)ft_atoi(&ori[st]);
-				while (ori[st] >= '0' && ori[st] <= '9')
-					st++;
-			}
-			else if (ori[st] == '*')
-			{
-				width = va_arg(ap, int);
-				st++;
-			}
-			if (ori[st] == '.')
-			{
-					st++;
-				if (ori[st] == '*')
-				{
-					precision = va_arg(ap, int);
-					st++;
-				}
-				else if (ori[st] >= '0' && ori[st] <= '9')
-				{
-					precision = (int)ft_atoi(&ori[st]);
-					while (ori[st] >= '0' && ori[st] <= '9')
-						st++;
-				}
-			}
-
-			printf("prec = %d, width = %d\n", precision, width);
-			st++;
-		}
-		//printf("st = %d, sub_st = %d, str = %s\n", st ,sub_st, str);
-	}
-	ret = ft_strlen(str);
-	write(1, str, ret);
-	free(str);
+	str.len = ft_strlen(str.content);
+	write(1, str.content, str.len);
+	free(str.content);
 	va_end(ap);
-	return (ret);
-}
-
-int main(void)
-{
-	//printf("printf : %-60.d\n", 3 );
-	ft_printf("abcd.%3.d");
-	return 0;
+	return (str.len);
 }
