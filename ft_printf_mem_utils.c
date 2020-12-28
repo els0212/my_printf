@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:40:19 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 21:18:31 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int		ft_isconv(char c, int st, int ed)
 ** print %c
 */
 
-void	ft_print_char(t_str *str, va_list ap)
+void	ft_print_char(t_str *str)
 {
 	char	c;
 
-	c = va_arg(ap, int);
+	c = va_arg(*(str->ap), int);
 	ft_resize_and_copy(&(str->content), &c, 0, 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 20:35:33 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 21:25:01 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 ** print %s
 */
 
-void	ft_print_string(t_str *str, va_list ap)
+void	ft_print_string(t_str *str)
 {
 	char	*s;
 	size_t	len;
 
-	s = va_arg(ap, char *);
+	s = va_arg(*(str->ap), char *);
 	len = ft_strlen(s);
 	ft_resize_and_copy(&(str->content), s, 0, len);
 }
@@ -30,12 +30,12 @@ void	ft_print_string(t_str *str, va_list ap)
 ** print %p
 */
 
-void	ft_print_address(t_str *str, va_list ap)
+void	ft_print_address(t_str *str)
 {
 	char	*p;
 	char	*addr;
 
-	p = va_arg(ap, char *);
+	p = va_arg(*(str->ap), char *);
 	if (!p)
 	{
 		ft_memset(&addr, 5);
@@ -55,15 +55,15 @@ void	ft_print_address(t_str *str, va_list ap)
 ** print %d, %i
 */
 
-void	ft_print_digit(t_str *str, va_list ap)
+void	ft_print_digit(t_str *str)
 {
 	int		d;
 	char	*d_str;
 	int		d_len;
 	int		flag;
 
-	d = va_arg(ap, int);
-	if (!d && (str->precision == -1 || !str->width))
+	d = va_arg(*(str->ap), int);
+	if (!d && (!str->precision || !str->width))
 		return ;
 	d_str = ft_itoa(d);
 	d_len = (int)ft_strlen(d_str);
@@ -85,14 +85,14 @@ void	ft_print_digit(t_str *str, va_list ap)
 ** print %u
 */
 
-void	ft_print_unsigned(t_str *str, va_list ap)
+void	ft_print_unsigned(t_str *str)
 {
 	unsigned int	n;
 	unsigned int	div;
 	char			*d_str;
 	int				st;
 
-	n = va_arg(ap, unsigned int);
+	n = va_arg(*(str->ap), unsigned int);
 	ft_memset(&d_str, 12);
 	st = 0;
 	while ((div = n / DECIMAL))
@@ -112,14 +112,14 @@ void	ft_print_unsigned(t_str *str, va_list ap)
 ** print %x, %X
 */
 
-void	ft_print_hex(t_str *str, va_list ap, int flag)
+void	ft_print_hex(t_str *str, int flag)
 {
 	unsigned int	n;
 	char			*d_str;
 	int				d_len;
 	int				st;
 
-	n = va_arg(ap, unsigned int);
+	n = va_arg(*(str->ap), unsigned int);
 	d_len = ft_make_hex((long)n, &d_str);
 	ft_str_rev(d_str, d_len);
 	if (flag == 1)
