@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 18:42:25 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 20:18:59 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
 			break ;
 		st++;
 	}
-	if ((str->width = ft_get_num(ap, ori, &st)) < 0)
+	if ((str->width = ft_get_num(ap, ori, &st)) < -1)
 	{
 		str->minus = 1;
 		str->width *= -1;
@@ -67,12 +67,13 @@ int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
 	st++;
 	return (st);
 }
-
+#include <stdio.h>
 int	ft_printf_loop(t_str *str, va_list ap, const char *ori, int *st)
 {
 	int	sub_st;
 
 	sub_st = *st;
+	ft_str_init(str, str->content);
 	while (ori[sub_st] && ori[sub_st] != '%')
 		sub_st++;
 	ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
@@ -102,7 +103,7 @@ int	ft_printf(const char *ori, ...)
 		return (-1);
 	va_start(ap, ori);
 	st = 0;
-	ft_str_init(&str);
+	ft_str_init(&str, 0);
 	while (ori[st])
 		if (ft_printf_loop(&str, ap, ori, &st))
 			break ;

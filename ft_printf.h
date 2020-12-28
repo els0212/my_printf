@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 16:49:15 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 20:02:40 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ size_t			ft_strlen(char *s);
 size_t			ft_strncat(char *dst, const char *src, size_t st, size_t ed);
 void			ft_resize_and_copy(char **line, char *buf, int st, int ed);
 void			ft_str_rev(char *str, int size);
-void			ft_str_init(t_str *str);
+void			ft_str_init(t_str *str, char *content);
 /*
 ** ft_printf_format_utils.c
 */

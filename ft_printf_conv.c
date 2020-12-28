@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 16:45:22 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 20:18:15 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_print_string(t_str *str, va_list ap)
 	s = va_arg(ap, char *);
 	len = ft_strlen(s);
 	ft_resize_and_copy(&(str->content), s, 0, len);
-	free(s);
 }
 
 /*
@@ -55,7 +54,7 @@ void	ft_print_address(t_str *str, va_list ap)
 /*
 ** print %d, %i
 */
-
+#include <stdio.h>
 void	ft_print_digit(t_str *str, va_list ap)
 {
 	int		d;
@@ -64,7 +63,7 @@ void	ft_print_digit(t_str *str, va_list ap)
 	int		flag;
 
 	d = va_arg(ap, int);
-	if (!d && !str->precision)
+	if (!d && (str->precision == -1 || !str->width))
 		return ;
 	d_str = ft_itoa(d);
 	d_len = (int)ft_strlen(d_str);
@@ -78,6 +77,7 @@ void	ft_print_digit(t_str *str, va_list ap)
 		if (flag == '0' && d < 0)
 			d_str[0] = '-';
 	}
+//	printf("d_str = %s, d_len = %d, wid = %d, pre = %d, zero = %d, min = %d\n", d_str, d_len, str->width, str->precision, str->zero, str->minus);
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
 	free(d_str);
 }

@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:36:09 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:36:09 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 20:04:02 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	ft_str_rev(char *str, int size)
 	}
 }
 
-void	ft_str_init(t_str *str)
+void	ft_str_init(t_str *str, char *content)
 {
-	str->content = 0;
+	str->content = content;
 	str->minus = -1;
 	str->zero = -1;
 	str->width = -1;
