@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 00:28:14 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 21:38:20 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 23:33:08 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,8 @@ int				ft_get_num(t_str *str, const char *ori, int *st, int flag)
 			(*st)++;
 	}
 	else
-		num = -1;
+		num = 0;
+	//printf("num = %d\n", num);
 	if (flag == 1)
 	{
 		if ((str->width = num) < 0)
