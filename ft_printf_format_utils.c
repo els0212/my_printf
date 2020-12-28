@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 00:28:14 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:37:23 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 11:36:15 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,18 +99,21 @@ unsigned long	ft_make_long(const char *ptr, int st, int ed)
 ** for processing * and atoi
 */
 
-int				ft_get_num(t_str *str, va_list ap, const char *ori, int st)
+int				ft_get_num(va_list ap, const char *ori, int *st)
 {
-	if (ori[st] == '*')
+	int	sub_st;
+
+	if (ori[*st] == '*')
 	{
-		str->width = va_arg(ap, int);
-		st++;
+		(*st)++;
+		return (va_arg(ap, int));
 	}
-	else if (ori[st] >= '0' && ori[st] <= '9')
+	else if (ori[*st] >= '0' && ori[*st] <= '9')
 	{
-		str->width = (int)ft_atoi(&ori[st]);
-		while (ori[st] >= '0' && ori[st] <= '9')
-			st++;
+		sub_st = *st;
+		while (ori[*st] >= '0' && ori[*st] <= '9')
+			(*st)++;
+		return ((int)ft_atoi(&ori[sub_st]));
 	}
-	return (st);
+	return (-1);
 }

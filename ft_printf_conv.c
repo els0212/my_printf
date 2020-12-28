@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:38:08 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 11:52:42 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_print_string(t_str *str, va_list ap)
 	s = va_arg(ap, char *);
 	len = ft_strlen(s);
 	ft_resize_and_copy(&(str->content), s, 0, len);
+	free(s);
 }
 
 /*
@@ -63,8 +64,11 @@ void	ft_print_digit(t_str *str, va_list ap)
 	int		flag;
 
 	d = va_arg(ap, int);
+	if (!d && !str->precision)
+		return ;
 	d_str = ft_itoa(d);
 	d_len = (int)ft_strlen(d_str);
+	
 	if ((flag = ft_handle_flags(str, &d_str, d_len)))
 	{
 		if (flag == '0' && d < 0)
@@ -76,6 +80,7 @@ void	ft_print_digit(t_str *str, va_list ap)
 			d_str[0] = '-';
 	}
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
+	free(d_str);
 }
 
 /*
@@ -102,6 +107,7 @@ void	ft_print_unsigned(t_str *str, va_list ap)
 	if (ft_handle_flags(str, &d_str, st) > 1)
 		ft_str_rev(d_str, st = ft_strlen(d_str));
 	ft_resize_and_copy(&(str->content), d_str, 0, st);
+	free(d_str);
 }
 
 /*
@@ -129,4 +135,5 @@ void	ft_print_hex(t_str *str, va_list ap, int flag)
 		}
 	}
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
+	free(d_str);
 }

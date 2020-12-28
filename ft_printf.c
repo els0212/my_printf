@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:40:03 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 11:53:18 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,23 @@ int	ft_proc_conv(t_str *str, char conv, va_list ap)
 
 int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
 {
-	if (ori[st] == '-')
+	int	ed;
+
+	ed = st + 2;
+	while (st != ed)
 	{
-		str->minus = 1;
+		str->minus = ori[st] == '-' ? 1 : -1;
+		str->zero = ori[st] == '0' ? 1 : -1;
+		if (str->minus == str->zero)
+			break ;
 		st++;
 	}
-	if (ori[st] == '0')
-	{
-		str->zero = 1;
-		st++;
-	}
-	st = ft_get_num(str, ap, ori, st);
+	str->width = ft_get_num(ap, ori, &st);
 	if (ori[st] == '.')
-		st = ft_get_num(str, ap, ori, ++st);
+	{
+		st++;
+		str->precision = ft_get_num(ap, ori, &st);
+	}
 	if (ft_proc_conv(str, ori[st], ap) == -1)
 		return (-1);
 	st++;

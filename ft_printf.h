@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/27 23:42:01 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 11:36:59 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # define HEXADECIMAL 16
 # define DECIMAL 10
-
+#include <stdio.h> // 추후 삭제
 typedef	struct	s_str
 {
 	char		*content;
@@ -59,7 +59,7 @@ long			ft_atoi(const char *nptr);
 char			*ft_itoa(int n);
 int				ft_make_hex(long p, char **addr);
 unsigned long	ft_make_long(const char *ptr, int st, int ed);
-int				ft_get_num(t_str *str, va_list ap, const char *ori, int st);
+int				ft_get_num(va_list ap, const char *ori, int *st);
 /*
 ** ft_printf.c
 */
