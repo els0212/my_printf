@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 21:25:01 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 21:48:17 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_print_digit(t_str *str)
 	int		flag;
 
 	d = va_arg(*(str->ap), int);
-	if (!d && (!str->precision || !str->width))
+	if (!d && (!str->precision || (str->zero == 1)))
 		return ;
 	d_str = ft_itoa(d);
 	d_len = (int)ft_strlen(d_str);
