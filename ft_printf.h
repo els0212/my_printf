@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 11:36:59 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 16:49:15 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # define HEXADECIMAL 16
 # define DECIMAL 10
-#include <stdio.h> // 추후 삭제
+
 typedef	struct	s_str
 {
 	char		*content;

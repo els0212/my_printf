@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 11:52:42 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 16:45:22 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	ft_print_digit(t_str *str, va_list ap)
 		return ;
 	d_str = ft_itoa(d);
 	d_len = (int)ft_strlen(d_str);
-	
 	if ((flag = ft_handle_flags(str, &d_str, d_len)))
 	{
 		if (flag == '0' && d < 0)

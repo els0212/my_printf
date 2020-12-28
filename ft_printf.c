@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 11:53:18 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 16:48:06 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
 			break ;
 		st++;
 	}
-	str->width = ft_get_num(ap, ori, &st);
+	if ((str->width = ft_get_num(ap, ori, &st)) < 0)
+	{
+		str->minus = 1;
+		str->width *= -1;
+	}
 	if (ori[st] == '.')
 	{
 		st++;
