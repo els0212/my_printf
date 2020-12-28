@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 20:18:59 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/28 20:33:52 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_chk_conv(t_str *str, va_list ap, const char *ori, int st)
 	st++;
 	return (st);
 }
-#include <stdio.h>
+
 int	ft_printf_loop(t_str *str, va_list ap, const char *ori, int *st)
 {
 	int	sub_st;
