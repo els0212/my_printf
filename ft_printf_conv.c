@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/29 22:47:28 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 23:53:29 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_print_digit(t_str *str)
 	int		d;
 	char	*d_str;
 	int		d_len;
-	int		flag;
+	int		rev_flag;
 
 	d = va_arg(*(str->ap), int);
 	str->sign = d < 0 ? '-' : 0;
@@ -68,11 +68,11 @@ void	ft_print_digit(t_str *str)
 	if (!d && !str->precision)
 		*d_str = '\0';
 	d_len = (int)ft_strlen(d_str);
-	if (ft_handle_flags(str, &d_str, d_len))
-	{
-		d_len = ft_strlen(d_str);
+	rev_flag = ft_handle_flags(str, &d_str, d_len);
+	d_len = ft_strlen(d_str);
+	if (rev_flag)
 		ft_str_rev(d_str, d_len);
-	}
+	
 	/*
 	if (str->precision >= d_len && d < 0)
 	{

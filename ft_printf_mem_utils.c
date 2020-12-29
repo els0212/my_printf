@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/29 22:49:25 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 23:43:32 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,15 @@ int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 
 	c = str->zero == -1 ? ' ' : '0';
 	rev_flag = ft_handle_prec(str, d_str, &d_len);
-
 	if (str->width > d_len)
 	{
-		if (!rev_flag && !str->minus)
+		if ((!rev_flag && str->minus == -1) || (rev_flag && str->minus != -1))
+		{
 			ft_str_rev(*d_str, d_len);
+			rev_flag = !rev_flag ? rev_flag + 1 : 0;
+		}
 		while (d_len++ < str->width)
 			ft_resize_and_copy(d_str, &c, 0, 1);
-		rev_flag++;
 	}
 	return (rev_flag);
 }
