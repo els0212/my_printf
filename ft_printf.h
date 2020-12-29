@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 23:21:20 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 22:39:18 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef	struct	s_str
 	int			zero;
 	int			width;
 	int			precision;
+	char		sign;
 	int			len;
 }				t_str;
 
@@ -44,6 +45,7 @@ int				ft_isconv(char c, int st, int ed);
 void			ft_print_char(t_str *str);
 int				ft_memset(char **line, size_t size);
 void			ft_init(char *line, size_t size);
+int				ft_handle_prec(t_str *str, char **d_str, int *d_len);
 int				ft_handle_flags(t_str *str, char **d_str, int d_len);
 /*
 ** ft_printf_str_utils.c
@@ -60,7 +62,7 @@ long			ft_atoi(const char *nptr);
 char			*ft_itoa(int n);
 int				ft_make_hex(long p, char **addr);
 unsigned long	ft_make_long(const char *ptr, int st, int ed);
-int				ft_get_num(t_str *str, const char *ori, int *st, int flag);
+void			ft_get_num(t_str *str, const char *ori, int *st, int flag);
 /*
 ** ft_printf.c
 */

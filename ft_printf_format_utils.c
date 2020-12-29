@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/24 00:28:14 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/29 15:47:02 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 18:14:34 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ unsigned long	ft_make_long(const char *ptr, int st, int ed)
 ** for processing * and atoi
 */
 
-int				ft_get_num(t_str *str, const char *ori, int *st, int flag)
+void			ft_get_num(t_str *str, const char *ori, int *st, int flag)
 {
 	int	num;
 
@@ -117,18 +117,11 @@ int				ft_get_num(t_str *str, const char *ori, int *st, int flag)
 	else
 		num = 0;
 	if (flag == 1)
-	{
 		if ((str->width = num) < 0)
 		{
 			str->minus = 1;
 			str->width *= -1;
 		}
-	}
 	else
-	{
-		str->zero = 1;
-		str->width = num;
-		str->precision = num;
-	}
-	return (-1);
+		str->precision = num < -1 ? -1 : num;
 }

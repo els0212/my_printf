@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/28 23:32:19 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 22:50:14 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	ft_chk_conv(t_str *str, const char *ori, int st)
 	int	ed;
 
 	ed = st + 2;
-	//printf("st = %d, min = %d, zero = %d\n",st,  str->minus, str->zero);
 	while (st != ed)
 	{
 		if (ori[st] == '-' && str->minus == -1)
@@ -55,9 +54,7 @@ int	ft_chk_conv(t_str *str, const char *ori, int st)
 			break ;
 		st++;
 	}
-//	printf("before st = %d, ori[st] = %c, next = %c\n", st, ori[st], ori[st+1]);
 	ft_get_num(str, ori, &st, 1);
-	//printf("after  st = %d, ori[st] = %c, next = %c\n", st, ori[st], ori[st+1]);
 	if (ori[st] == '.')
 	{
 		st++;

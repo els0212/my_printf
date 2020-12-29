@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/29 14:33:15 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/29 22:47:28 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,28 @@ void	ft_print_digit(t_str *str)
 	int		flag;
 
 	d = va_arg(*(str->ap), int);
-	//printf("prec = %d, d = %d\n", str->precision, d);
-	if (!d && str->precision == 0)
-		ft_memset(&d_str, 1);
-	else
-		d_str = ft_itoa(d);
+	str->sign = d < 0 ? '-' : 0;
+	d_str = ft_itoa(d);
+	if (!d && !str->precision)
+		*d_str = '\0';
 	d_len = (int)ft_strlen(d_str);
-	if ((flag = ft_handle_flags(str, &d_str, d_len)))
+	if (ft_handle_flags(str, &d_str, d_len))
 	{
-		if (flag == '0' && d < 0)
-			d_str[d_len - 1] = '0';
 		d_len = ft_strlen(d_str);
-		if (flag > 1)
-			ft_str_rev(d_str, d_len);
-		if (flag == '0' && d < 0)
-			d_str[0] = '-';
+		ft_str_rev(d_str, d_len);
 	}
+	/*
+	if (str->precision >= d_len && d < 0)
+	{
+		d_str[d_len - 1] = '0';
+		ft_resize_and_copy(&d_str, "-", 0, 1);
+	}
+	
+	if (flag > 1)
+		ft_str_rev(d_str, d_len);
+	if (flag == '0' && d < 0)
+		d_str[0] = '-';
+	*/
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
 	free(d_str);
 }
