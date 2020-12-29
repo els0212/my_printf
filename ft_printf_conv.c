@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 00:19:18 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 00:27:53 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_print_digit(t_str *str)
 	d_str = ft_itoa(d);
 	if (!d && !str->precision)
 		*d_str = '\0';
-	rev_flag = ft_handle_flags(str, &d_str, (int)ft_strlen(d_str);
+	rev_flag = ft_handle_flags(str, &d_str, (int)ft_strlen(d_str));
 	d_len = ft_strlen(d_str);
 	if (rev_flag)
 		ft_str_rev(d_str, d_len);
