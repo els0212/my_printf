@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 00:27:29 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 00:38:12 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		ft_handle_prec(t_str *str, char **d_str, int *d_len)
 		}
 		if (str->sign == '-')
 			*(*d_str + ((*d_len)++)) = str->sign;
+		*(*d_str + *d_len) = '\0';
 	}
 	return (rev_flag);
 }
@@ -103,6 +104,7 @@ int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 			*(*d_str + sign_idx) = '0';
 			*(*d_str + d_len - 2) = '-';
 		}
+		*(*d_str + d_len - 1) = '\0';
 	}
 	return (rev_flag);
 }
