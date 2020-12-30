@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 00:38:12 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:09:34 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 	char	c;
 	int		sign_idx;
 
-	c = (str->zero == 1 && str->minus != 1) ? '0' : ' ';
+	c = (str->zero == 1 && str->minus != 1 && str->precision == -1) ? '0' : ' ';
 	rev_flag = ft_handle_prec(str, d_str, &d_len);
 	if (str->width > d_len)
 	{
@@ -99,7 +99,7 @@ int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 		sign_idx = d_len - 1;
 		while (d_len++ < str->width)
 			ft_resize_and_copy(d_str, &c, 0, 1);
-		if (str->sign == '-' && str->zero == 1 && str->minus == -1)
+		if (str->sign == '-' && str->zero == 1 && str->minus == -1 && str->precision == -1)
 		{
 			*(*d_str + sign_idx) = '0';
 			*(*d_str + d_len - 2) = '-';
