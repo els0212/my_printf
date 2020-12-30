@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 21:36:35 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 21:38:26 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ void	ft_print_address(t_str *str)
 	char	*p;
 	char	*addr;
 	int		rev_flag;
+	int		addr_len;
 
 	p = va_arg(*(str->ap), char *);
 	ft_make_hex((long)p, &addr);
 	ft_resize_and_copy(&addr, "x0", 0, 2);
-	ft_str_rev(addr, ft_strlen(addr));
-	rev_flag = ft_handle_width(str, &final_s, len, 0);
-	len = ft_strlen(final_s);
+	addr_len = ft_strlen(addr);
+	ft_str_rev(addr, addr_len);
+	rev_flag = ft_handle_width(str, &addr, addr_len, 0);
+	addr_len = ft_strlen(addr);
 	if (rev_flag)
-		ft_str_rev(final_s, len);
-	ft_resize_and_copy(&(str->content), addr, 0, ft_strlen(addr));
+		ft_str_rev(addr, addr_len);
+	ft_resize_and_copy(&(str->content), addr, 0, addr_len);
 	free(addr);
 }
 
