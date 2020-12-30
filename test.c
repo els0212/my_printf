@@ -29,8 +29,9 @@ int main(void)
 	//ft_printf("%0.i, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d\n", i, j, k, l, m, c, e, d); //T12
 	//printf("%0.i, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d, %0.d", i, j, k, l, m, c, e, d); //T12
 //	printf("%.*d\n", 0, 0);
-	ft_printf("%.*i\n", 3, -12);
-	printf("%.*i\n", 3, -12);
-
+	//ft_printf("%.*i\n", 3, -12);
+	//printf("%.*i\n", 3, -12);
+	printf("%2s\n", "0");
+	ft_printf("%2s\n","0");
 	return 0;
 }

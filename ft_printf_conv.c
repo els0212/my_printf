@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 18:24:57 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:38:11 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,20 @@ void	ft_print_string(t_str *str)
 	char	*s;
 	char	*final_s;
 	int		len;
+	int		rev_flag;
 
 	s = va_arg(*(str->ap), char *);
 	len = (int)ft_strlen(s);
+	final_s = 0;
 	if (str->precision != -1)
-	{
 		len = str->precision < len ? str->precision : len;
-		ft_resize_and_copy(&final_s, s, 0, len);
-	}
-		ft_resize_and_copy(&(str->content), s, 0, len);
+	ft_resize_and_copy(&final_s, s, 0, len);
+	rev_flag = ft_handle_width(str, &final_s, len, 0);
+	len = ft_strlen(final_s);
+	if (rev_flag)
+		ft_str_rev(final_s, len);
+	//printf("rev_flag = %d, prec = %d, s = %s, len = %d\n",rev_flag, str->precision, final_s, len);
+	ft_resize_and_copy(&(str->content), final_s, 0, len);
 }
 
 /*
