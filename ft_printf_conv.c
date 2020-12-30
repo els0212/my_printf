@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 19:18:48 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 19:19:28 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_print_unsigned(t_str *str)
 	int				rev_flag;
 
 	n = va_arg(*(str->ap), unsigned int);
-	printf("n = %ld\n",n);
+	//printf("n = %ld\n",n);
 	ft_memset(&d_str, 12);
 	st = 0;
 	while ((div = n / DECIMAL))
