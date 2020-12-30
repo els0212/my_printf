@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 19:19:28 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 20:08:43 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void	ft_print_unsigned(t_str *str)
 		n = div;
 	}
 	d_str[st++] = n + '0';
+	if (!n && !str->precision)
+		*d_str = '\0';
 	/*
 	ft_str_rev(d_str, st);
 	if (ft_handle_flags(str, &d_str, st) > 1)
@@ -139,6 +141,8 @@ void	ft_print_hex(t_str *str, int flag)
 	n = va_arg(*(str->ap), unsigned int);
 	d_len = ft_make_hex((long)n, &d_str);
 	ft_str_rev(d_str, d_len);
+	if (!n && !str->precision)
+		*d_str = '\0';
 	if (flag == 1)
 	{
 		st = 0;
