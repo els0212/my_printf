@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 21:38:26 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 21:49:37 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	ft_print_string(t_str *str)
 	int		rev_flag;
 
 	s = va_arg(*(str->ap), char *);
+	if (!s)
+	{
+		ft_resize_and_copy(&s, "(null)", 0, 6);
+	}
 	len = (int)ft_strlen(s);
 	final_s = 0;
 	if (str->precision != -1)

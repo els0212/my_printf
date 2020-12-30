@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 21:43:22 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 21:44:15 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_print_char(t_str *str)
 	char	c;
 	char	*c_str;
 	int		c_len;
+	int		rev_flag;
 
 	c = va_arg(*(str->ap), int);
 	c_str = 0;

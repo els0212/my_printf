@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/29 22:50:14 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 21:46:41 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ int	ft_proc_conv(t_str *str, char conv)
 
 int	ft_chk_conv(t_str *str, const char *ori, int st)
 {
-	int	ed;
-
-	ed = st + 2;
-	while (st != ed)
+	while (1)
 	{
-		if (ori[st] == '-' && str->minus == -1)
+		if (ori[st] == '-')// && str->minus == -1)
 			str->minus = 1;
-		else if (ori[st] == '0' && str->zero == -1)
+		else if (ori[st] == '0')// && str->zero == -1)
 			str->zero = 1;
 		else
 			break ;
