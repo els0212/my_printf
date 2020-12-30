@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 21:49:37 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 22:36:56 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_print_string(t_str *str)
 	len = ft_strlen(final_s);
 	if (rev_flag)
 		ft_str_rev(final_s, len);
-	//printf("rev_flag = %d, prec = %d, s = %s, len = %d\n",rev_flag, str->precision, final_s, len);
+	str->len += len;
 	ft_resize_and_copy(&(str->content), final_s, 0, len);
 }
 
@@ -61,6 +61,7 @@ void	ft_print_address(t_str *str)
 	addr_len = ft_strlen(addr);
 	if (rev_flag)
 		ft_str_rev(addr, addr_len);
+	str->len += addr_len;
 	ft_resize_and_copy(&(str->content), addr, 0, addr_len);
 	free(addr);
 }
@@ -86,6 +87,7 @@ void	ft_print_digit(t_str *str)
 	d_str[d_len] = '\0';
 	if (rev_flag)
 		ft_str_rev(d_str, d_len);
+	str->len += d_len;
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
 	free(d_str);
 }
@@ -124,6 +126,7 @@ void	ft_print_unsigned(t_str *str)
 	d_str[st] = '\0';
 	if (rev_flag)
 		ft_str_rev(d_str, st);
+	str->len += st;
 	ft_resize_and_copy(&(str->content), d_str, 0, st);
 	free(d_str);
 }
@@ -160,6 +163,7 @@ void	ft_print_hex(t_str *str, int flag)
 	d_str[d_len] = '\0';
 	if (rev_flag)
 		ft_str_rev(d_str, d_len);
+	str->len += d_len;
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
 	free(d_str);
 }

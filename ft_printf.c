@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 21:46:41 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 22:37:23 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	while (ori[sub_st] && ori[sub_st] != '%')
 		sub_st++;
 	ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
+	str->len += (sub_st - *st);
 	if (!ori[*st = sub_st])
 		return (1);
 	(*st)++;
@@ -80,6 +81,7 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	{
 		ft_resize_and_copy(&(str->content), (char *)ori, *st, *st + 1);
 		(*st)++;
+		(str->len)++;
 	}
 	else
 	{
@@ -104,7 +106,7 @@ int	ft_printf(const char *ori, ...)
 	while (ori[st])
 		if (ft_printf_loop(&str, ori, &st))
 			break ;
-	str.len = ft_strlen(str.content);
+	//str.len = ft_strlen(str.content);
 	write(1, str.content, str.len);
 	free(str.content);
 	va_end(ap);
