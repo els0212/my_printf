@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:27:00 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:57:23 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 		(str->len)++;
 	}
 	else
+	{
 		if ((*st = ft_chk_conv(str, ori, *st)) == -1)
 			return (-1);
+	}
 	return (0);
 }
 

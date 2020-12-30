@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:40:58 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:47:35 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,8 @@ void	ft_print_string(t_str *str)
 	if (str->precision != -1)
 		len = str->precision < len ? str->precision : len;
 	ft_resize_and_copy(&final_s, s, 0, len);
-	//free(s);
 	rev_flag = ft_handle_width(str, &final_s, len, 0);
 	ft_write_conv(str, final_s, rev_flag);
-	/*
-	len = ft_strlen(final_s);
-	if (rev_flag)
-		ft_str_rev(final_s, len);
-	str->len += len;
-	write(1, final_s, len);
-	free(final_s);
-	*/
 }
 
 /*
@@ -64,14 +55,6 @@ void	ft_print_address(t_str *str)
 	ft_str_rev(addr, addr_len);
 	rev_flag = ft_handle_width(str, &addr, addr_len, 0);
 	ft_write_conv(str, addr, rev_flag);
-	/*
-	addr_len = ft_strlen(addr);
-	if (rev_flag)
-		ft_str_rev(addr, addr_len);
-	str->len += addr_len;
-	write(1, addr, addr_len);
-	free(addr);
-	*/
 }
 
 /*
@@ -94,16 +77,6 @@ void	ft_print_digit(t_str *str)
 	rev_flag = ft_handle_prec(str, &d_str, &d_len);
 	rev_flag = ft_handle_width(str, &d_str, d_len, rev_flag);
 	ft_write_conv(str, d_str, rev_flag);
-	/*
-	rev_flag = ft_handle_flags(str, &d_str, d_len);
-	d_len = ft_strlen(d_str);
-	d_str[d_len] = '\0';
-	if (rev_flag)
-		ft_str_rev(d_str, d_len);
-	str->len += d_len;
-	write(1, d_str, d_len);
-	free(d_str);
-	*/
 }
 
 /*
@@ -136,16 +109,6 @@ void	ft_print_unsigned(t_str *str)
 	rev_flag = ft_handle_prec(str, &d_str, &st);
 	rev_flag = ft_handle_width(str, &d_str, st, rev_flag);
 	ft_write_conv(str, d_str, rev_flag);
-	/*
-	rev_flag = ft_handle_flags(str, &d_str, st);
-	st = ft_strlen(d_str);
-	d_str[st] = '\0';
-	if (rev_flag)
-		ft_str_rev(d_str, st);
-	str->len += st;
-	write(1, d_str, st);
-	free(d_str);
-	*/
 }
 
 /*
@@ -175,17 +138,8 @@ void	ft_print_hex(t_str *str, int flag)
 			st++;
 		}
 	}
+	d_len = ft_strlen(d_str);
 	rev_flag = ft_handle_prec(str, &d_str, &d_len);
 	rev_flag = ft_handle_width(str, &d_str, d_len, rev_flag);
 	ft_write_conv(str, d_str, rev_flag);
-	/*
-	rev_flag = ft_handle_flags(str, &d_str, (int)ft_strlen(d_str));
-	d_len = ft_strlen(d_str);
-	d_str[d_len] = '\0';
-	if (rev_flag)
-		ft_str_rev(d_str, d_len);
-	str->len += d_len;
-	write(1, d_str, d_len);
-	free(d_str);
-	*/
 }

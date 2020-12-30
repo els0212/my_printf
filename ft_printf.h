@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:42:44 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:57:07 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # define HEXADECIMAL 16
 # define DECIMAL 10
-#include <stdio.h>
+
 typedef	struct	s_str
 {
 	va_list		*ap;
@@ -38,16 +38,19 @@ void			ft_print_digit(t_str *str);
 void			ft_print_unsigned(t_str *str);
 void			ft_print_hex(t_str *str, int flag);
 /*
+** ft_printf_conv2.c
+*/
+void			ft_print_char(t_str *str);
+int				ft_handle_prec(t_str *str, char **d_str, int *d_len);
+int				ft_handle_width(t_str *str, char **d_str,
+		int d_len, int rev_flag);
+void			ft_write_conv(t_str *str, char *d_str, int rev_flag);
+/*
 ** ft_printf_mem_utils.c
 */
 int				ft_isconv(char c, int st, int ed);
-void			ft_print_char(t_str *str);
 int				ft_memset(char **line, size_t size);
 void			ft_init(char *line, size_t size);
-int				ft_handle_prec(t_str *str, char **d_str, int *d_len);
-int				ft_handle_width(t_str *str, char **d_str, int d_len, int rev_flag);
-//int				ft_handle_flags(t_str *str, char **d_str, int d_len);
-void			ft_write_conv(t_str *str, char *d_str, int rev_flag);
 /*
 ** ft_printf_str_utils.c
 */

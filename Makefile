@@ -1,4 +1,4 @@
-SRC=ft_printf.c ft_printf_format_utils.c ft_printf_str_utils.c ft_printf_conv.c ft_printf_mem_utils.c
+SRC=ft_printf.c ft_printf_format_utils.c ft_printf_str_utils.c ft_printf_conv.c ft_printf_conv2.c ft_printf_mem_utils.c
 OBJ=$(SRC:.c=.o)
 NAME=libftprintf.a
 CC=gcc

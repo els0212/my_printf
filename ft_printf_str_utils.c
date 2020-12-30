@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:36:09 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:26:45 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:49:20 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_strncat(char *dst, const char *src, size_t st, size_t ed)
 	if (!src || st == ed)
 		return (-1);
 	dst_st = ft_strlen(dst);
-	while (st < ed)//src[st] && st < ed)
+	while (st < ed)
 		dst[dst_st++] = src[st++];
 	if (ed > 0)
 		dst[dst_st] = '\0';
