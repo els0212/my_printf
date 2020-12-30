@@ -2,6 +2,7 @@
 #include <stdio.h>
 int main(void)
 {
+	/*
 	int		a = -4;
 	int		b = 0;
 	char	c = 'a';
@@ -23,6 +24,7 @@ int main(void)
 	char	*s = "-2147483648";
 	char	*t = "0x12345678";
 	char	*u = "-0";
+	*/
 	//printf("%.3d", 10);
 	//ft_printf("%.0i, %.0d, %.0d, %.0d, %.0d, %.0d, %.0d, %.0d\n", i, j, k, l, m, c, e, d); //T13
 //	printf("%.0i, %.0d, %.0d, %.0d, %.0d, %.0d, %.0d, %.0d", i, j, k, l, m, c, e, d); //T13
@@ -31,7 +33,7 @@ int main(void)
 //	printf("%.*d\n", 0, 0);
 	//ft_printf("%.*i\n", 3, -12);
 	//printf("%.*i\n", 3, -12);
-	printf("%2s\n", "0");
-	ft_printf("%2s\n","0");
+	printf("%u\n", 4294967284);
+	ft_printf("%u\n", 4294967284);
 	return 0;
 }
