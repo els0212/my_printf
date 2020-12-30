@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 18:23:29 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:24:57 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	ft_print_string(t_str *str)
 {
 	char	*s;
 	char	*final_s;
-	size_t	len;
+	int		len;
 
 	s = va_arg(*(str->ap), char *);
-	len = ft_strlen(s);
+	len = (int)ft_strlen(s);
 	if (str->precision != -1)
 	{
 		len = str->precision < len ? str->precision : len;
