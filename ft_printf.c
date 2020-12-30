@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 22:52:59 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:27:00 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	ft_chk_conv(t_str *str, const char *ori, int st)
 {
 	while (1)
 	{
-		if (ori[st] == '-')// && str->minus == -1)
+		if (ori[st] == '-')
 			str->minus = 1;
-		else if (ori[st] == '0')// && str->zero == -1)
+		else if (ori[st] == '0')
 			str->zero = 1;
 		else
 			break ;
@@ -56,7 +56,6 @@ int	ft_chk_conv(t_str *str, const char *ori, int st)
 	{
 		st++;
 		ft_get_num(str, ori, &st, 2);
-		//printf("str->prec = %d\n", str->precision);
 	}
 	if (ft_proc_conv(str, ori[st]) == -1)
 		return (-1);
@@ -69,11 +68,10 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	int	sub_st;
 
 	sub_st = *st;
-	ft_str_init(str, str->content);
+	ft_str_init(str, str->len);
 	while (ori[sub_st] && ori[sub_st] != '%')
 		sub_st++;
 	write(1, &ori[*st], sub_st - *st);
-	//ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
 	str->len += (sub_st - *st);
 	if (!ori[*st = sub_st])
 		return (1);
@@ -81,15 +79,12 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	if (ori[*st] == '%')
 	{
 		write(1, "%", 1);
-		//ft_resize_and_copy(&(str->content), (char *)ori, *st, *st + 1);
 		(*st)++;
 		(str->len)++;
 	}
 	else
-	{
 		if ((*st = ft_chk_conv(str, ori, *st)) == -1)
 			return (-1);
-	}
 	return (0);
 }
 
@@ -105,13 +100,9 @@ int	ft_printf(const char *ori, ...)
 	st = 0;
 	ft_str_init(&str, 0);
 	str.ap = &ap;
-	str.len = 0;
 	while (ori[st])
 		if (ft_printf_loop(&str, ori, &st))
 			break ;
-	//str.len = ft_strlen(str.content);
-	//write(1, str.content, str.len);
-	//free(str.content);
 	va_end(ap);
 	return (str.len);
 }

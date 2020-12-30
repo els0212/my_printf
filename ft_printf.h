@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 18:33:13 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:42:44 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 #include <stdio.h>
 typedef	struct	s_str
 {
-	char		*content;
 	va_list		*ap;
 	int			minus;
 	int			zero;
@@ -47,7 +46,8 @@ int				ft_memset(char **line, size_t size);
 void			ft_init(char *line, size_t size);
 int				ft_handle_prec(t_str *str, char **d_str, int *d_len);
 int				ft_handle_width(t_str *str, char **d_str, int d_len, int rev_flag);
-int				ft_handle_flags(t_str *str, char **d_str, int d_len);
+//int				ft_handle_flags(t_str *str, char **d_str, int d_len);
+void			ft_write_conv(t_str *str, char *d_str, int rev_flag);
 /*
 ** ft_printf_str_utils.c
 */
@@ -55,7 +55,7 @@ size_t			ft_strlen(char *s);
 size_t			ft_strncat(char *dst, const char *src, size_t st, size_t ed);
 void			ft_resize_and_copy(char **line, char *buf, int st, int ed);
 void			ft_str_rev(char *str, int size);
-void			ft_str_init(t_str *str, char *content);
+void			ft_str_init(t_str *str, int len);
 /*
 ** ft_printf_format_utils.c
 */

@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:17:07 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:42:33 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,11 @@ void	ft_print_char(t_str *str)
 	c_str = 0;
 	ft_resize_and_copy(&c_str, &c, 0, 1);
 	rev_flag = ft_handle_width(str, &c_str, 1, 0);
-	//printf("rev_flag = %d\n", rev_flag);
 	c_len = !c ? ft_strlen(c_str) + 1 : ft_strlen(c_str);
 	if ((!c && !rev_flag) || (c && rev_flag))
 		ft_str_rev(c_str, c_len);
 	str->len += c_len;
 	write(1, c_str, c_len);
-	//ft_resize_and_copy(&(str->content), c_str, 0, c_len);
 	free(c_str);
 }
 
@@ -119,11 +117,26 @@ int		ft_handle_width(t_str *str, char **d_str, int d_len, int rev_flag)
 	}
 	return (rev_flag);
 }
+/*
 int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 {
 	int		rev_flag;
+	int		len;
 
 	rev_flag = ft_handle_prec(str, d_str, &d_len);
 	rev_flag = ft_handle_width(str, d_str, d_len, rev_flag);
-	return (rev_flag);
+}
+*/
+void	ft_write_conv(t_str *str, char *d_str, int rev_flag)
+{
+	int	len;
+
+	len = ft_strlen(d_str);
+	d_str[len] = '\0';
+	if (rev_flag)
+		ft_str_rev(d_str, len);
+	str->len += len;
+	write(1, d_str, len);
+	free(d_str);
+	d_str = 0;
 }
