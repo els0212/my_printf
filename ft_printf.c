@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 22:39:45 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 22:52:59 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,16 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	ft_str_init(str, str->content);
 	while (ori[sub_st] && ori[sub_st] != '%')
 		sub_st++;
-	ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
+	write(1, &ori[*st], sub_st - *st);
+	//ft_resize_and_copy(&(str->content), (char *)ori, *st, sub_st);
 	str->len += (sub_st - *st);
 	if (!ori[*st = sub_st])
 		return (1);
 	(*st)++;
 	if (ori[*st] == '%')
 	{
-		ft_resize_and_copy(&(str->content), (char *)ori, *st, *st + 1);
+		write(1, "%", 1);
+		//ft_resize_and_copy(&(str->content), (char *)ori, *st, *st + 1);
 		(*st)++;
 		(str->len)++;
 	}
@@ -108,8 +110,8 @@ int	ft_printf(const char *ori, ...)
 		if (ft_printf_loop(&str, ori, &st))
 			break ;
 	//str.len = ft_strlen(str.content);
-	write(1, str.content, str.len);
-	free(str.content);
+	//write(1, str.content, str.len);
+	//free(str.content);
 	va_end(ap);
 	return (str.len);
 }
