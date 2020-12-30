@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 00:35:09 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:23:29 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 void	ft_print_string(t_str *str)
 {
 	char	*s;
+	char	*final_s;
 	size_t	len;
 
 	s = va_arg(*(str->ap), char *);
 	len = ft_strlen(s);
-	ft_resize_and_copy(&(str->content), s, 0, len);
+	if (str->precision != -1)
+	{
+		len = str->precision < len ? str->precision : len;
+		ft_resize_and_copy(&final_s, s, 0, len);
+	}
+		ft_resize_and_copy(&(str->content), s, 0, len);
 }
 
 /*
@@ -72,7 +78,6 @@ void	ft_print_digit(t_str *str)
 	d_str[d_len] = '\0';
 	if (rev_flag)
 		ft_str_rev(d_str, d_len);
-	//printf("d_str = %s, d_len = %d\n", d_str, d_len);
 	ft_resize_and_copy(&(str->content), d_str, 0, d_len);
 	free(d_str);
 }

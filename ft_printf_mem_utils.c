@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 18:09:34 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:21:27 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,41 @@ int		ft_handle_prec(t_str *str, char **d_str, int *d_len)
 	return (rev_flag);
 }
 
+int		ft_handle_width(t_str *str, char **d_str, int *d_len, int rev_flag)
+{
+	int		sign_idx;
+	char	c;
+
+	c = (str->zero == 1 && str->minus != 1 && str->precision == -1) ? '0' : ' ';
+	if (str->width > *d_len)
+	{
+		if ((!rev_flag && str->minus == -1) || (rev_flag && str->minus != -1))
+		{
+			ft_str_rev(*d_str, *d_len);
+			rev_flag = !rev_flag ? rev_flag + 1 : 0;
+		}
+		sign_idx = *d_len - 1;
+		while ((*d_len)++ < str->width)
+			ft_resize_and_copy(d_str, &c, 0, 1);
+		if (str->sign == '-' && str->zero == 1 && str->minus == -1 && str->precision == -1)
+		{
+			*(*d_str + sign_idx) = '0';
+			*(*d_str + *d_len - 2) = '-';
+		}
+		*(*d_str + *d_len - 1) = '\0';
+	}
+	return (rev_flag);
+}
 int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 {
 	int		rev_flag;
-	char	c;
+//	char	c;
 	int		sign_idx;
 
-	c = (str->zero == 1 && str->minus != 1 && str->precision == -1) ? '0' : ' ';
+//	c = (str->zero == 1 && str->minus != 1 && str->precision == -1) ? '0' : ' ';
 	rev_flag = ft_handle_prec(str, d_str, &d_len);
+	rev_flag = ft_handle_width(str, d_str, &d_len, rev_flag);
+	/*
 	if (str->width > d_len)
 	{
 		if ((!rev_flag && str->minus == -1) || (rev_flag && str->minus != -1))
@@ -106,5 +133,6 @@ int		ft_handle_flags(t_str *str, char **d_str, int d_len)
 		}
 		*(*d_str + d_len - 1) = '\0';
 	}
+	*/
 	return (rev_flag);
 }
