@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 18:38:11 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 18:43:06 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	ft_print_unsigned(t_str *str)
 	unsigned int	div;
 	char			*d_str;
 	int				st;
+	int				rev_flag;
 
 	n = va_arg(*(str->ap), unsigned int);
 	ft_memset(&d_str, 12);
@@ -107,9 +108,16 @@ void	ft_print_unsigned(t_str *str)
 		n = div;
 	}
 	d_str[st++] = n + '0';
+	/*
 	ft_str_rev(d_str, st);
 	if (ft_handle_flags(str, &d_str, st) > 1)
 		ft_str_rev(d_str, st = ft_strlen(d_str));
+	*/
+	rev_flag = ft_handle_flags(str, &d_str, st);
+	st = ft_strlen(d_str);
+	d_str[st] = '\0';
+	if (rev_flag)
+		ft_str_rev(d_str, st);
 	ft_resize_and_copy(&(str->content), d_str, 0, st);
 	free(d_str);
 }
