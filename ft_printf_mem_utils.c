@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:18 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:13:18 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 23:17:07 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_print_char(t_str *str)
 	rev_flag = ft_handle_width(str, &c_str, 1, 0);
 	//printf("rev_flag = %d\n", rev_flag);
 	c_len = !c ? ft_strlen(c_str) + 1 : ft_strlen(c_str);
-	if (!rev_flag)
+	if ((!c && !rev_flag) || (c && rev_flag))
 		ft_str_rev(c_str, c_len);
 	str->len += c_len;
 	write(1, c_str, c_len);
