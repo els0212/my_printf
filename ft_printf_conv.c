@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:37:52 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 20:14:41 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 20:19:51 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,10 @@ void	ft_print_unsigned(t_str *str)
 	}
 	d_str[st++] = n + '0';
 	if (!n && !str->precision)
+	{
 		*d_str = '\0';
+		st = 0;
+	}
 	ft_str_rev(d_str, st);
 	rev_flag = ft_handle_flags(str, &d_str, st);
 	//printf("rev_flag = %d, str = %s\n",rev_flag, d_str);
@@ -132,6 +135,7 @@ void	ft_print_hex(t_str *str, int flag)
 	char			*d_str;
 	int				d_len;
 	int				st;
+	int				rev_flag;
 
 	n = va_arg(*(str->ap), unsigned int);
 	d_len = ft_make_hex((long)n, &d_str);
