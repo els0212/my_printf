@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 22:37:23 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/30 22:39:45 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	ft_printf(const char *ori, ...)
 	st = 0;
 	ft_str_init(&str, 0);
 	str.ap = &ap;
+	str.len = 0;
 	while (ori[st])
 		if (ft_printf_loop(&str, ori, &st))
 			break ;
