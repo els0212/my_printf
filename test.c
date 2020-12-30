@@ -33,7 +33,7 @@ int main(void)
 //	printf("%.*d\n", 0, 0);
 	//ft_printf("%.*i\n", 3, -12);
 	//printf("%.*i\n", 3, -12);
-	printf("%u\n", 4294967284);
-	ft_printf("%u\n", 4294967284);
+	printf("%020x\n", 4294967284);
+	ft_printf("%020x\n", 4294967284);
 	return 0;
 }
