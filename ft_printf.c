@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:57:23 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 12:56:03 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,12 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	(*st)++;
 	if (ori[*st] == '%')
 	{
+		/*
 		write(1, "%", 1);
 		(*st)++;
 		(str->len)++;
+		*/
+		st += ft_print_percent(str);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:41:59 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:57:07 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 12:55:32 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void			ft_print_hex(t_str *str, int flag);
 /*
 ** ft_printf_conv2.c
 */
+int				ft_print_percent(t_str *str);
 void			ft_print_char(t_str *str);
 int				ft_handle_prec(t_str *str, char **d_str, int *d_len);
 int				ft_handle_width(t_str *str, char **d_str,

@@ -6,11 +6,32 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 23:53:42 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/30 23:55:36 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 13:03:40 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** print %c
+*/
+
+int		ft_print_percent(t_str *str)
+{
+	char	*c_str;
+	int		rev_flag;
+	int		c_len;
+
+	ft_resize_and_copy(&c_str, "%", 0, 1);
+	rev_flag = ft_handle_width(str, &c_str, 1, 0);
+	c_len = (int)ft_strlen(c_str);
+	if (rev_flag)
+		ft_str_rev(c_str, c_len);
+	str->len += c_len;
+	write(1, c_str, c_len);
+	free(c_str);
+	return (c_len);
+}
 
 /*
 ** print %c
