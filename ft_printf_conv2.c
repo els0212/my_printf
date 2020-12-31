@@ -6,14 +6,14 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 23:53:42 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/31 13:13:17 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 13:17:31 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-** print %c
+** print %%
 */
 
 int		ft_print_percent(t_str *str)
@@ -24,6 +24,7 @@ int		ft_print_percent(t_str *str)
 
 	c_str = 0;
 	ft_resize_and_copy(&c_str, "%", 0, 1);
+	str->precision = -1;
 	rev_flag = ft_handle_width(str, &c_str, 1, 0);
 	c_len = (int)ft_strlen(c_str);
 	if (rev_flag)
