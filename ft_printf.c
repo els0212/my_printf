@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/31 12:56:03 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 13:12:45 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	ft_proc_conv(t_str *str, char conv)
 {
-	if (!ft_isconv(conv, 0, 8))
+	if (!ft_isconv(conv, 0, 9))
 		return (-1);
 	if (conv == 'c')
 		ft_print_char(str);
@@ -36,6 +36,8 @@ int	ft_proc_conv(t_str *str, char conv)
 		ft_print_hex(str, 0);
 	else if (conv == 'X')
 		ft_print_hex(str, 1);
+	else if (conv == '%')
+		ft_print_percent(str);
 	return (0);
 }
 
@@ -76,20 +78,21 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	if (!ori[*st = sub_st])
 		return (1);
 	(*st)++;
+	/*
 	if (ori[*st] == '%')
 	{
-		/*
 		write(1, "%", 1);
 		(*st)++;
 		(str->len)++;
-		*/
-		st += ft_print_percent(str);
 	}
 	else
 	{
 		if ((*st = ft_chk_conv(str, ori, *st)) == -1)
 			return (-1);
 	}
+	*/
+	if ((*st = ft_chk_conv(str, ori, *st)) == -1)
+		return (-1);
 	return (0);
 }
 
