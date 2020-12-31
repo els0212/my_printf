@@ -6,7 +6,7 @@
 /*   By: hyi <hyi@student.42seoul.kr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 23:40:02 by hyi               #+#    #+#             */
-/*   Updated: 2020/12/31 13:12:45 by hyi              ###   ########.fr       */
+/*   Updated: 2020/12/31 15:37:23 by hyi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,6 @@ int	ft_printf_loop(t_str *str, const char *ori, int *st)
 	if (!ori[*st = sub_st])
 		return (1);
 	(*st)++;
-	/*
-	if (ori[*st] == '%')
-	{
-		write(1, "%", 1);
-		(*st)++;
-		(str->len)++;
-	}
-	else
-	{
-		if ((*st = ft_chk_conv(str, ori, *st)) == -1)
-			return (-1);
-	}
-	*/
 	if ((*st = ft_chk_conv(str, ori, *st)) == -1)
 		return (-1);
 	return (0);
